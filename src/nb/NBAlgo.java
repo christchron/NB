@@ -62,7 +62,7 @@ public class NBAlgo {
         }
         
         toProbTable();
-        print();
+//        print();
         
         for(int i = 0 ; i<ClassProb.size();i++){
             double prob = 1.0;

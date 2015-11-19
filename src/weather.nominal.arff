@@ -9,11 +9,7 @@
 @data
 sunny,hot,high,FALSE,no
 sunny,hot,high,TRUE,no
-<<<<<<< HEAD
-overcast,hot,high,FALSE,yes  b7   hf
-=======
 overcast,hot,high,FALSE,yes
->>>>>>> 578028d438697b669a7c5df8206b7f1b45147252
 rainy,mild,high,FALSE,yes
 rainy,cool,normal,FALSE,yes
 rainy,cool,normal,TRUE,no

@@ -54,30 +54,30 @@ public class KNN {
     getNearestNeighbor(k, listModelSet, listTestSet);
     int countTrue=0;
     
-//    for(int i=0; i<arrResult.size(); i++){
-//      for(int j=0; j<arrResult.get(i).size(); j++){
-//        String[] knnObjectData = arrResult.get(i).get(j).getData();
-//        
-//        Integer value = counter.get(knnObjectData[knnObjectData.length-1]);
-//        if (value != null) {
-//          counter.put(knnObjectData[knnObjectData.length-1], value+1);
-//        } else {
-//          counter.put(knnObjectData[knnObjectData.length-1], 1);
-//        }
-//      }
-//      
-//      int max = -1; String maxLabel="";
-//      for (String label : counter.keySet()) {
-//        if(counter.get(label)>max){
-//          max = counter.get(label);
-//          maxLabel = label;
-//        }
-//      }
-//      
-//      if(listTestSet.get(i)[listTestSet.get(i).length-1].equals(maxLabel)){
-//        countTrue++;
-//      }
-//    } 
+    for(int i=0; i<arrResult.size(); i++){
+      for(int j=0; j<arrResult.get(i).size(); j++){
+        String[] knnObjectData = arrResult.get(i).get(j).getData();
+        
+        Integer value = counter.get(knnObjectData[knnObjectData.length-1]);
+        if (value != null) {
+          counter.put(knnObjectData[knnObjectData.length-1], value+1);
+        } else {
+          counter.put(knnObjectData[knnObjectData.length-1], 1);
+        }
+      }
+      
+      int max = -1; String maxLabel="";
+      for (String label : counter.keySet()) {
+        if(counter.get(label)>max){
+          max = counter.get(label);
+          maxLabel = label;
+        }
+      }
+      
+      if(listTestSet.get(i)[listTestSet.get(i).length-1].equals(maxLabel)){
+        countTrue++;
+      }
+    } 
     return countTrue/arrResult.size();
   }
   /**

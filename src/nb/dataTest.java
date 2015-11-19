@@ -21,6 +21,9 @@ import java.util.List;
 public class dataTest {
     private String filename;
     private ArrayList<ArrayList<String>> dTest;
+    
+    private ArrayList<String> labels = new ArrayList<String>();
+    
     @SuppressWarnings("empty-statement")
     public dataTest(String fl){
         String csvFile = fl;
@@ -43,7 +46,10 @@ public class dataTest {
                 for (int j = 0;j<(dataset.get(i).length)-1;j++){
                     //System.out.print(dataset.get(i)[j]);
                     tempTest.add(dataset.get(i)[j]);
-                }   
+                }
+                
+                labels.add(dataset.get(i)[dataset.get(i).length-1]);
+                
                 //System.out.println();
                 //System.out.print(tempTest.size());
                 dTest.add(tempTest);
@@ -72,5 +78,9 @@ public class dataTest {
     
     public ArrayList<ArrayList<String>> getDS(){
         return dTest;
+    }
+    
+    public ArrayList<String> getLabels(){
+        return labels;
     }
 }

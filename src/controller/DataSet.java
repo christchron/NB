@@ -101,7 +101,7 @@ public class DataSet {
                 }
             }
         }
-        System.out.println("Done");
+        System.out.println("\n**Done Parsing**\n");
     }
     
     public ArrayList<String[]> getDS(){
@@ -114,5 +114,14 @@ public class DataSet {
     
     public HashMap<String, String[]> getAttributes(){
         return attributes;
+    }
+    
+    public void inspect(){
+        for (int i = 0;i<dataset.size();i++){
+            for (int p=0;p<dataset.get(i).length;p++){
+                System.out.print(dataset.get(i)[p] + " ");
+            }
+            System.out.println();
+        }
     }
 }
