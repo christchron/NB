@@ -24,33 +24,14 @@ public class DSParse {
         BufferedReader br = null;
         String sCurrentLine;
         String[] temp;
-        int tempLength = 0;
         int j=0;
         try{
-            //Map<String, String> maps = new HashMap<String, String>();
             br = new BufferedReader(new FileReader(csvFile));
-                    /*while ((line = br.readLine()) != null) {
-                            // use comma as separator
-                            String[] country = line.split(cvsSplitBy);
-                            maps.put(country[4], country[5]);
-                    }
-                    //loop map
-                    for (Map.Entry<String, String> entry : maps.entrySet()) {
-                            System.out.println("Country [code= " + entry.getKey() + " , name="
-                                    + entry.getValue() + "]");
-                    }*/
             dataset = new ArrayList<String[]>();
+            while (!(sCurrentLine = br.readLine()).equals("@data")) {}
             while ((sCurrentLine = br.readLine()) != null) {
-                //System.out.println(sCurrentLine);
                 temp = sCurrentLine.split(",");
-                tempLength = temp.length;
-                    //dataset[j][i] = temp[i];
-                    //System.out.println(temp[i]);
-                    dataset.add(temp);
-                    
-                    //System.out.println((String[])dataset.get(i));
-                
-                //System.arraycopy(temp, 0, dataset[j], 0, tempLength);
+                dataset.add(temp);
             }
             for (int i = 0;i<dataset.size();i++){
                 for (int p=0;p<dataset.get(i).length;p++){

@@ -18,14 +18,12 @@ public class NB {
     public static void main(String[] args) {
         // TODO code application logic here
         DSParse dset;
-        dset = new DSParse("src/car.csv");
+        dset = new DSParse("src/weather.nominal.arff");
         ArrayList<String> test= new ArrayList<String>();
-        test.add("low");
-        test.add("low");
-        test.add("4");
-        test.add("more");
-        test.add("small");
-        test.add("low");
+        test.add("overcast");
+        test.add("hot");
+        test.add("high");
+        test.add("FALSE");
         NBAlgo Freq = new NBAlgo(dset,test);
         //System.out.println("aaas");
         System.out.println(Freq.getResult());

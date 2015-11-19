@@ -9,7 +9,7 @@
 @data
 sunny,hot,high,FALSE,no
 sunny,hot,high,TRUE,no
-overcast,hot,high,FALSE,yes  b7   hf
+overcast,hot,high,FALSE,yes
 rainy,mild,high,FALSE,yes
 rainy,cool,normal,FALSE,yes
 rainy,cool,normal,TRUE,no
