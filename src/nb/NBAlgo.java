@@ -18,11 +18,7 @@ public class NBAlgo {
     private String res;
     private ArrayList<ArrayList<String>> ClassProb;
     
-<<<<<<< HEAD
-    public NBAlgo(DataSet dataset,ArrayList<String> dataTest){
-=======
     public NBAlgo(DSParse dataset,ArrayList<String> dataTest){
->>>>>>> 578028d438697b669a7c5df8206b7f1b45147252
         ArrayList<String> Variant = new ArrayList<String>();
         Class = new ArrayList<String>();
         Frequent= new ArrayList<ArrayList<String>>();
@@ -64,11 +60,9 @@ public class NBAlgo {
             ClassElement.add(String.valueOf(countClass));
             ClassProb.add(ClassElement);
         }
-<<<<<<< HEAD
-=======
         
->>>>>>> 578028d438697b669a7c5df8206b7f1b45147252
         toProbTable();
+        print();
         
         for(int i = 0 ; i<ClassProb.size();i++){
             double prob = 1.0;
@@ -91,17 +85,10 @@ public class NBAlgo {
                 res = cprob.get(0);
             }
         }
-<<<<<<< HEAD
-        
-    };
-    
-    public ArrayList<String> checkVariant(DataSet dataset, int index){
-=======
         //print();
     };
     
     public ArrayList<String> checkVariant(DSParse dataset, int index){
->>>>>>> 578028d438697b669a7c5df8206b7f1b45147252
         ArrayList<String> variant = new ArrayList<String>();
         for (int i = 0;i<dataset.getDS().size();i++){
            if (!variant.contains(dataset.getDS().get(i)[index])){
@@ -154,10 +141,7 @@ public class NBAlgo {
                 }
             }
         }
-<<<<<<< HEAD
-=======
         
->>>>>>> 578028d438697b669a7c5df8206b7f1b45147252
         int countClassProb=0;
         for (ArrayList<String> cprob : ClassProb ){
             countClassProb += Integer.parseInt(cprob.get(1));
@@ -178,16 +162,9 @@ public class NBAlgo {
         for(ArrayList<String> data : Frequent){
             System.out.println(data.get(0)+ " "+data.get(1)+ " "+data.get(2)+ " " + data.get(3));
         }
-<<<<<<< HEAD
-        /*for (ArrayList<String> data : ClassProb){
-            System.out.println(data.get(0)+ " "+data.get(1));
-        }*/
-=======
-        System.out.println("Class Prob");
+       /* System.out.println("Class Prob");
         for (ArrayList<String> data : ClassProb){
             System.out.println(data.get(0)+ " "+data.get(1));
-        }
->>>>>>> 578028d438697b669a7c5df8206b7f1b45147252
+        }*/
     }
-    
 }

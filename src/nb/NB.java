@@ -17,20 +17,6 @@ public class NB {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-<<<<<<< HEAD
-        DataSet dset;
-        dset = new DataSet("src/car.csv");
-        ArrayList<String> test= new ArrayList<String>();
-        test.add("low");
-        test.add("low");
-        test.add("4");
-        test.add("more");
-        test.add("small");
-        test.add("low");
-        NBAlgo Freq = new NBAlgo(dset,test);
-        //System.out.println("aaas");
-        System.out.println(Freq.getResult());
-=======
         DSParse dset;
         dataTest dTest;
         dset = new DSParse("src/weather.nominal.arff");
@@ -48,7 +34,6 @@ public class NB {
         
         //System.out.println("aaas");
         //System.out.println(Freq.getResult());
->>>>>>> 578028d438697b669a7c5df8206b7f1b45147252
         //Freq.print();
     }   
 }

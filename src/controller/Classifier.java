@@ -3,44 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nb;
+package controller;
 
 import java.util.*;
+import knn.*;
+import result.*;
 
 /**
  *
  * @author elvan_owen
  */
-public class Controller {
-    public void doFullTraining(){
-        DataSet dataSet = new DataSet();
-        
-        String fileName = "";
-        int k;
-        
-        dataSet.parseDataSet(fileName);
+public class Classifier {
+    public Result doFullTraining(int k, DataSet dataSet){
         ArrayList<String[]> dataRecords = dataSet.getDS();
+           
+        Result result = new Result();
+        result.setAccuracy(new KNN().accuracy(k, dataRecords, dataRecords));
         
-        ArrayList<String[]> testRecords = new ArrayList<String[]>();
-        
-        for (int i=0;i<dataRecords.size();i++){
-            testRecords.add(Arrays.copyOf(dataRecords.get(i), dataRecords.size()-1));
-        }
-        
-//        KNN.getNearestNeightbour(dataRecords, testRecords, k);
+        return result;
     }
     
-    public void doTenCrossFoldValidation(){
-        DataSet dataSet = new DataSet();
-        
-        String fileName = "";
-        int totalNearest;
-        
-        dataSet.parseDataSet(fileName);
+    public Result doTenCrossFoldValidation(int totalNearest, DataSet dataSet){
         ArrayList<String[]> totalDataRecords = dataSet.getDS();
         
         int totalSize = totalDataRecords.size();
         int step = totalSize / 10;
+        double totalAccuracy = 0;
         
         for (int j = 0 ; j < 10 ; j++){
             ArrayList<String[]> dataRecords = new ArrayList<String[]>();
@@ -57,8 +45,13 @@ public class Controller {
                     testRecords.add(Arrays.copyOf(totalDataRecords.get(i), step - 1));
                 }
             }
-
-//            KNN.getNearestNeightbour(dataRecords, testRecords, k);
-        }  
+            
+            totalAccuracy += new KNN().accuracy(totalNearest, dataRecords, testRecords);
+        }
+        
+        Result result = new Result();
+        result.setAccuracy(totalAccuracy / 10);
+        
+        return result;
     }
 }

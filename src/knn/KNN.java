@@ -49,7 +49,7 @@ public class KNN {
   }
   
   
-  double accuracy(int k, ArrayList<String[]> listModelSet, ArrayList<String[]> listTestSet){
+  public double accuracy(int k, ArrayList<String[]> listModelSet, ArrayList<String[]> listTestSet){
     HashMap<String, Integer> counter = new HashMap<>();
     getNearestNeighbor(k, listModelSet, listTestSet);
     int countTrue=0;

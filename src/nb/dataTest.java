@@ -48,10 +48,10 @@ public class dataTest {
                 //System.out.print(tempTest.size());
                 dTest.add(tempTest);
                 for (int k = 0;k<tempTest.size();k++){
-                    System.out.print(tempTest.get(k));
+                   // System.out.print(tempTest.get(k));
                     
                 }
-                System.out.println();
+                //System.out.println();
             }
             
         } catch (FileNotFoundException e) {
