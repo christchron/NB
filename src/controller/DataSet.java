@@ -61,7 +61,7 @@ public class DataSet {
                 //System.out.println(sCurrentLine);
                 
                 if (sCurrentLine.startsWith("@attribute")){
-                    attributes = getDatasetAttributes(sCurrentLine);
+//                    attributes = getDatasetAttributes(sCurrentLine);
                 }
                 
                 if (sCurrentLine.startsWith("@relation")){

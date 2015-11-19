@@ -5,9 +5,9 @@
  */
 package controller;
 
+import result.Result;
 import java.util.*;
 import knn.*;
-import result.*;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Classifier {
         ArrayList<String[]> dataRecords = dataSet.getDS();
            
         Result result = new Result();
-        result.setAccuracy(new KNN().accuracy(k, dataRecords, dataRecords));
+//        result.setAccuracy(new KNN().accuracy(k, dataRecords, dataRecords));
         
         return result;
     }
@@ -46,7 +46,7 @@ public class Classifier {
                 }
             }
             
-            totalAccuracy += new KNN().accuracy(totalNearest, dataRecords, testRecords);
+//            totalAccuracy += new KNN().accuracy(totalNearest, dataRecords, testRecords);
         }
         
         Result result = new Result();

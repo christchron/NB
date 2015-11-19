@@ -5,11 +5,11 @@
  */
 package controller;
 
-import Result.*;
 import java.util.ArrayList;
 import nb.DSParse;
 import nb.NBAlgo;
 import nb.dataTest;
+import result.*;
 
 /**
  *
@@ -22,15 +22,39 @@ public class KNNController {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        // Untuk KNN
+        
         int k = 1;
         String fileName = "src/weather.nominal.arff";
         
         DataSet dataSet = new DataSet();
         dataSet.parseDataSet(fileName);
         
-        Classifier executor = new Classifier();
-        Result result = executor.doFullTraining(k, dataSet);
+        Classifier classifier = new Classifier();
+        Result result = classifier.doFullTraining(k, dataSet);
         
-        Result result = executor.doTenCrossFoldValidation(k, dataSet);   
+        result = classifier.doTenCrossFoldValidation(k, dataSet);   
+        
+        // Untuk NaiveBayes
+        
+        DSParse dset;
+        dataTest dTest;
+        dset = new DSParse("src/weather.nominal.arff");
+        dTest = new dataTest("src/weather.nominal.arff");
+        NBAlgo Freq;
+        
+        for (ArrayList<String> test : dTest.getDS()){
+             Freq = new NBAlgo(dset,test);
+             System.out.println(Freq.getResult());
+        }
+//        test.add("sunny");
+//        test.add("hot");
+//        test.add("high");
+//        test.add("TRUE");
+        
+        //System.out.println("aaas");
+        //System.out.println(Freq.getResult());
+        //Freq.print();
     }
 }
