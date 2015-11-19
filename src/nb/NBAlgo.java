@@ -60,6 +60,7 @@ public class NBAlgo {
             ClassElement.add(String.valueOf(countClass));
             ClassProb.add(ClassElement);
         }
+        
         toProbTable();
         
         for(int i = 0 ; i<ClassProb.size();i++){
@@ -83,7 +84,7 @@ public class NBAlgo {
                 res = cprob.get(0);
             }
         }
-        
+        //print();
     };
     
     public ArrayList<String> checkVariant(DSParse dataset, int index){
@@ -139,6 +140,7 @@ public class NBAlgo {
                 }
             }
         }
+        
         int countClassProb=0;
         for (ArrayList<String> cprob : ClassProb ){
             countClassProb += Integer.parseInt(cprob.get(1));
@@ -159,9 +161,10 @@ public class NBAlgo {
         for(ArrayList<String> data : Frequent){
             System.out.println(data.get(0)+ " "+data.get(1)+ " "+data.get(2)+ " " + data.get(3));
         }
-        /*for (ArrayList<String> data : ClassProb){
+        System.out.println("Class Prob");
+        for (ArrayList<String> data : ClassProb){
             System.out.println(data.get(0)+ " "+data.get(1));
-        }*/
+        }
     }
     
 }
