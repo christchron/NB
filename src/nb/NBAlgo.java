@@ -62,6 +62,7 @@ public class NBAlgo {
         }
         
         toProbTable();
+        print();
         
         for(int i = 0 ; i<ClassProb.size();i++){
             double prob = 1.0;
@@ -161,9 +162,9 @@ public class NBAlgo {
         for(ArrayList<String> data : Frequent){
             System.out.println(data.get(0)+ " "+data.get(1)+ " "+data.get(2)+ " " + data.get(3));
         }
-        System.out.println("Class Prob");
+       /* System.out.println("Class Prob");
         for (ArrayList<String> data : ClassProb){
             System.out.println(data.get(0)+ " "+data.get(1));
-        }
+        }*/
     }
 }
