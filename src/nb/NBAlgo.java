@@ -166,5 +166,4 @@ public class NBAlgo {
             System.out.println(data.get(0)+ " "+data.get(1));
         }
     }
-    
 }
