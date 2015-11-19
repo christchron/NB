@@ -6,6 +6,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import knn.KNN;
 import nb.DSParse;
 import nb.NBAlgo;
 import nb.dataTest;
@@ -26,31 +28,31 @@ public class Controller {
         // Untuk KNN
         
         int k = 1;
-        String fileName = "weather.nominal.arff";
-        
-        DataSet dataSet = new DataSet();
-        dataSet.parseDataSet(fileName);
-        
-        dataSet.inspect();
-        
-        System.out.println("\n\n\n\n-- KNN\n\n");
-        
-        Classifier classifier = new Classifier();
-        Result result = classifier.doFullTraining(k, dataSet);
-        
-        System.out.println("---- Full Training");
-        System.out.println("Accuracy : " + result.getAccuracy());
-        
-        result = classifier.doTenCrossFoldValidation(k, dataSet);   
-        System.out.println("---- 10 Fold Cross Validation");
-        System.out.println("Accuracy : " + result.getAccuracy());
-        
+//        String fileName = "weather.nominal.arff";
+//        
+//        DataSet dataSet = new DataSet();
+//        dataSet.parseDataSet(fileName);
+//        
+//        dataSet.inspect();
+//        
+//        System.out.println("\n\n\n\n-- KNN\n\n");
+//        
+//        Classifier classifier = new Classifier();
+//        Result result = classifier.doFullTraining(k, dataSet);
+//        
+//        System.out.println("---- Full Training");
+//        System.out.println("Accuracy : " + result.getAccuracy());
+//        
+//        result = classifier.doTenCrossFoldValidation(k, dataSet);   
+//        System.out.println("---- 10 Fold Cross Validation");
+//        System.out.println("Accuracy : " + result.getAccuracy());
+//        
         
         
         
         
         // Untuk NaiveBayes
-        System.out.println("\n\n\n\n-- NB\n\n");
+        System.out.println("\n\n\n\n-- NB");
         
         DSParse dset;
         dataTest dTest;
@@ -62,13 +64,14 @@ public class Controller {
         
         int i = 0, wrongTest = 0, correctTest = 0;
         
+        System.out.println("---- Full Training");
         for (ArrayList<String> test : dTest.getDS()){
              Freq = new NBAlgo(dset,test);
 //             System.out.println(Freq.getResult());
              
              String res = Freq.getResult();
              
-             System.out.print("label - " + labels.get(i) + " - result - " + res);
+             System.out.print("\tlabel - " + labels.get(i) + " - result - " + res);
              if (labels.get(i).equals(res)){
                  System.out.println(" -> True");
                  correctTest++;
@@ -80,13 +83,69 @@ public class Controller {
              i++;
         }
         
-        System.out.println("---- Full Training");
-        
         double accuracy = (correctTest * 100) /(correctTest + wrongTest);
         System.out.println("Accuracy : " + accuracy + " %");
         
-        System.out.println("---- 10 Fold Cross Validation");
-        System.out.println("Accuracy : " + result.getAccuracy());
+        System.out.println("\n\n---- 10 Fold Cross Validation");
+        
+        ArrayList<String[]> totalDataRecords = dset.getDS();
+        ArrayList<ArrayList<String>> totalTestRecords = dTest.getDS();
+        
+        int totalSize = totalDataRecords.size();
+        int step = totalSize / 10;
+        wrongTest = 0;
+        correctTest = 0;
+        
+        for (int j = 0 ; j < 10 ; j++){
+            System.out.print("-- Test Iteration " + j + "\n");
+            
+            ArrayList<String[]> dataRecords = new ArrayList<>();
+            ArrayList<ArrayList<String>> testRecords = new ArrayList<>();
+            
+            for (i = j * step ; i < (j + 1) * step ; i++){
+                testRecords.add(totalTestRecords.get(i));
+            }
+            
+            for (k = 0 ; k < 10 ; k++){
+                if (k == j) continue;
+                
+                for (i = j * step ; i < (j + 1) * step ; i++){
+                    dataRecords.add(totalDataRecords.get(i));
+                }
+            }
+            
+            DSParse new_dset = new DSParse();
+            new_dset.setDS(dataRecords);
+//            System.out.println("-- -- -- -- -- --");
+//            new_dset.inspect();
+//            System.out.println("-- -- -- -- -- --");
+            
+            for (ArrayList<String> test : testRecords){
+//                for (int w = 0;w<test.size();w++){
+//                    System.out.println("&& ");
+//                    System.out.println(test.get(w));
+//                }
+                
+                 Freq = new NBAlgo(new_dset,test);
+    //             System.out.println(Freq.getResult());
+
+                 String res = Freq.getResult();
+
+                 System.out.print("\tlabel - " + labels.get(i) + " - result - " + res);
+                 if (labels.get(i).equals(res)){
+                     System.out.println(" -> True");
+                     correctTest++;
+                 } else {
+                     System.out.println(" -> False");
+                     wrongTest++;
+                 }
+
+                 i++;
+            }
+        }
+        
+        accuracy = (correctTest * 100) /(correctTest + wrongTest);
+        System.out.println("Accuracy : " + accuracy + " %");
 //        test.add("sunny");
 //        test.add("hot");
 //        test.add("high");

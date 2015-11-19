@@ -19,6 +19,8 @@ public class DSParse {
     private String filename;
     private ArrayList<String[]> dataset;
     @SuppressWarnings("empty-statement")
+    
+    public DSParse(){}
     public DSParse(String fl){
         String csvFile = fl;
         BufferedReader br = null;
@@ -57,5 +59,18 @@ public class DSParse {
     
     public ArrayList<String[]> getDS(){
         return dataset;
+    }
+    
+    public void setDS(ArrayList<String[]> dataset){
+        this.dataset =  dataset;
+    }
+    
+    public void inspect(){
+        for (int i = 0;i<dataset.size();i++){
+            for (int p=0;p<dataset.get(i).length;p++){
+                System.out.print(dataset.get(i)[p] + " ");
+            }
+            System.out.println();
+        }
     }
 }
