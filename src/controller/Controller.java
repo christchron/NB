@@ -56,8 +56,8 @@ public class Controller {
         
         DSParse dset;
         dataTest dTest;
-        dset = new DSParse("weather.nominal.arff");
-        dTest = new dataTest("weather.nominal.arff");
+        dset = new DSParse("src/weather.nominal.arff");
+        dTest = new dataTest("src/weather.nominal.arff");
         NBAlgo Freq;
         
         ArrayList<String> labels = dTest.getLabels();
