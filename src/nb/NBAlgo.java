@@ -62,7 +62,7 @@ public class NBAlgo {
         }
         
         toProbTable();
-//        print();
+       //print();
         
         for(int i = 0 ; i<ClassProb.size();i++){
             double prob = 1.0;
@@ -76,7 +76,7 @@ public class NBAlgo {
             prob *= Double.parseDouble(ClassProb.get(i).get(1));
             ClassProb.get(i).set(1,Double.toString(prob));
         }
-        
+         
         double DominantClass = 0.0;
         res = new String();
         for (ArrayList<String> cprob : ClassProb){

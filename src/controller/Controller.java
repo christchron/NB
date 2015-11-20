@@ -84,7 +84,8 @@ public class Controller {
         }
         
         double accuracy = (correctTest * 100) /(correctTest + wrongTest);
-        System.out.println("Accuracy : " + accuracy + " %");
+        System.out.println("Correctly Classified Instances : " + accuracy + " %");
+        System.out.println("Incorrectly Classified Instances : " + (100-accuracy) + " %");
         
         System.out.println("\n\n---- 10 Fold Cross Validation");
         
@@ -162,7 +163,8 @@ public class Controller {
         }
         
         accuracy = (correctTest * 100) /(correctTest + wrongTest);
-        System.out.println("Accuracy : " + accuracy + " %");
+        System.out.println("Correctly Classified Instances : " + accuracy + " %");
+        System.out.println("Incorrectly Classified Instances : " + (100-accuracy) + " %");
 //        test.add("sunny");
 //        test.add("hot");
 //        test.add("high");
