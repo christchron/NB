@@ -102,17 +102,33 @@ public class Controller {
             ArrayList<String[]> dataRecords = new ArrayList<>();
             ArrayList<ArrayList<String>> testRecords = new ArrayList<>();
             
-            for (i = j * step ; i < (j + 1) * step ; i++){
-                testRecords.add(totalTestRecords.get(i));
-            }
+            int startTestIndex = j * step ; 
+            int finishTestIndex = (j + 1) * step;
             
-            for (k = 0 ; k < 10 ; k++){
-                if (k == j) continue;
-                
-                for (i = j * step ; i < (j + 1) * step ; i++){
-                    dataRecords.add(totalDataRecords.get(i));
+            labels = new ArrayList<>();
+            
+            for (int w = 0;w<totalTestRecords.size();w++){
+                if (w >= startTestIndex && w < finishTestIndex){
+                    testRecords.add(totalTestRecords.get(w));
+                    
+                    String[] attrs = totalDataRecords.get(w);
+                    labels.add(attrs[attrs.length - 1]);
+                } else{
+                    dataRecords.add(totalDataRecords.get(w));
                 }
             }
+            
+//            for (i = j * step ; i < (j + 1) * step ; i++){
+//                testRecords.add(totalTestRecords.get(i));
+//            }
+//            
+//            for (k = 0 ; k < 10 ; k++){
+//                if (k == j) continue;
+//                
+//                for (i = j * step ; i < (j + 1) * step ; i++){
+//                    dataRecords.add(totalDataRecords.get(i));
+//                }
+//            }
             
             DSParse new_dset = new DSParse();
             new_dset.setDS(dataRecords);
@@ -120,6 +136,7 @@ public class Controller {
 //            new_dset.inspect();
 //            System.out.println("-- -- -- -- -- --");
             
+            i = 0;
             for (ArrayList<String> test : testRecords){
 //                for (int w = 0;w<test.size();w++){
 //                    System.out.println("&& ");
