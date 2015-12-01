@@ -43,8 +43,18 @@ public class KNN {
         arrList.add(knnObj);
       }
       sortList(arrList);
-      arrResult.add(new ArrayList<>(arrList.subList(0, k-1)));
+      
+      ArrayList<knnObject> subList = new ArrayList<>();
+      for(int m=0; m<k; m++){
+        subList.add(arrList.get(m));
+      }
+      arrResult.add(subList);
     }    
+    /*for(int i=0; i<arrResult.size(); i++){
+      for(int j=0; j<arrResult.get(i).size(); j++){
+        System.out.println(arrResult.get(i).get(j).getData()[0]);
+      }
+    }*/
     return arrResult;
   }
   
@@ -53,6 +63,7 @@ public class KNN {
     HashMap<String, Integer> counter = new HashMap<>();
     getNearestNeighbor(k, listModelSet, listTestSet);
     int countTrue=0;
+    String maxLabel="";
     
     for(int i=0; i<arrResult.size(); i++){
       for(int j=0; j<arrResult.get(i).size(); j++){
@@ -66,25 +77,18 @@ public class KNN {
         }
       }
       
-      int max = -1; String maxLabel="";
+      int max = -1;
       for (String label : counter.keySet()) {
         if(counter.get(label)>max){
           max = counter.get(label);
           maxLabel = label;
         }
       }
-      
       if(listTestSet.get(i)[listTestSet.get(i).length-1].equals(maxLabel)){
         countTrue++;
       }
     } 
-    return countTrue/arrResult.size();
-  }
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String[] args) {
-    // TODO code application logic here
-  }
 
+    return ((double)countTrue/arrResult.size()*100);
+  }
 }

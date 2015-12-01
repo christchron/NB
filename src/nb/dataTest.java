@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author X450
+ * @author Randi_Chilyon
  */
 public class dataTest {
     private String filename;
@@ -43,7 +43,7 @@ public class dataTest {
             }
             for (int i = 0;i < dataset.size();i++){
                 tempTest = new ArrayList<String>();
-                for (int j = 0;j<(dataset.get(i).length)-1;j++){
+                for (int j = 0;j<(dataset.get(i).length);j++){
                     //System.out.print(dataset.get(i)[j]);
                     tempTest.add(dataset.get(i)[j]);
                 }
@@ -54,10 +54,9 @@ public class dataTest {
                 //System.out.print(tempTest.size());
                 dTest.add(tempTest);
                 for (int k = 0;k<tempTest.size();k++){
-                   // System.out.print(tempTest.get(k));
-                    
+                    //System.out.print(tempTest.get(k));   
                 }
-                //System.out.println();
+               // System.out.println();
             }
             
         } catch (FileNotFoundException e) {

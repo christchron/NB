@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.lang.*;
 /**
  *
- * @author X450
+ * @author Randi_Chilyon
  */
 public class DSParse {
     private String filename;

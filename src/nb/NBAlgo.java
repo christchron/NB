@@ -6,10 +6,11 @@
 package nb;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
- * @author X450
+ * @author Randi_Chilyon
  */
 public class NBAlgo {
     
@@ -44,6 +45,7 @@ public class NBAlgo {
             }
             colNum++;
         }
+        
         ClassProb = new ArrayList<ArrayList<String>>();
         Variant = checkVariant(dataset,0);
         for (int i = 0;i<Class.size();i++){
@@ -63,19 +65,62 @@ public class NBAlgo {
         
         toProbTable();
        //print();
+//        for (int p = 0;p<ClassProb.size();p++){
+//            for (int i = 0;i<dataset.getDS().size();i++){
+//                double prob = 1.0;
+//                for(int j=0;j<dataTest.size()-1;j++){
+//                        int k=0;
+//                        //System.out.println("prob size=" + probabilityTable.size());
+//                        while(k<Frequent.size() && (!Frequent.get(k).get(1).equals(dataTest.get(j)) || !Frequent.get(k).get(2).equals(dataTest.get(dataTest.size()-1)))){
+//                            k++;
+//                        }
+//                        if(k != Frequent.size())
+//                            prob *= Double.parseDouble(Frequent.get(k).get(3));
+//                        else // probability value not found
+//                            prob *=0;
+//                    }
+//                prob *= Double.parseDouble(ClassProb.get(p).get(1));
+//                ClassProb.get(p).set(1,Double.toString(prob));
+//            }
+//        }
+//      
+//        for(int i = 0 ; i<ClassProb.size();i++){
+//            double prob = 1.0;
+//            for (int j = 0;j<dataTest.size()-1;j++){
+//                for(int k = 0;k<Frequent.size();k++){
+//                    if (Frequent.get(k).get(1).equals(dataTest.get(j)) && Frequent.get(k).get(2).equals(ClassProb.get(i).get(0)) && Frequent.get(k).get(1).equals(dataTest.get(1))){
+//                        prob *= Double.parseDouble(Frequent.get(k).get(3));
+//                        //System.out.println(dataTest.get(j));
+//                    }
+//                }
+//            }
+//            prob *= Double.parseDouble(ClassProb.get(i).get(1));
+//            ClassProb.get(i).set(1,Double.toString(prob));
+//            //print();
+//        }
         
-        for(int i = 0 ; i<ClassProb.size();i++){
-            double prob = 1.0;
-            for (int j = 0;j<dataTest.size();j++){
-                for(int k = 0;k<Frequent.size();k++){
-                    if (Frequent.get(k).get(1).equals(dataTest.get(j)) && Frequent.get(k).get(2).equals(ClassProb.get(i).get(0))){
-                        prob *= Double.parseDouble(Frequent.get(k).get(3));
+         for(Iterator<String> it = Class.iterator(); it.hasNext();){
+                String now = it.next();
+                Double prob = 1.0;
+                for(int j=0;j<dataTest.size()-1;j++){
+                    int k=0;
+                    //System.out.println("prob size=" + probabilityTable.size());
+                    while(k<Frequent.size() && (!Frequent.get(k).get(0).equals(dataTest.get(j)) || !Frequent.get(k).get(2).equals(now))){
+                        k++;
                     }
+                    if(k != Frequent.size())
+                        prob *= Double.parseDouble(Frequent.get(k).get(3));
+                    else // probability value not found
+                        prob *=0;
                 }
+//                ArrayList<String> hasil = new ArrayList<>();
+//                hasil.add(now);
+//                hasil.add(prob.toString());
+//                probabilityClass.add(hasil);
             }
-            prob *= Double.parseDouble(ClassProb.get(i).get(1));
-            ClassProb.get(i).set(1,Double.toString(prob));
-        }
+        
+        
+        
          
         double DominantClass = 0.0;
         res = new String();
@@ -86,11 +131,13 @@ public class NBAlgo {
             }
         }
         //print();
+        
     };
     
     public ArrayList<String> checkVariant(DSParse dataset, int index){
         ArrayList<String> variant = new ArrayList<String>();
         for (int i = 0;i<dataset.getDS().size();i++){
+            //System.out.println(dataset.getDS().get(i)[index]);
            if (!variant.contains(dataset.getDS().get(i)[index])){
                variant.add(dataset.getDS().get(i)[index]);
            }
@@ -158,13 +205,19 @@ public class NBAlgo {
         return res;
     }
     
-    public void print(){
+    public void printFreq(){
         for(ArrayList<String> data : Frequent){
             System.out.println(data.get(0)+ " "+data.get(1)+ " "+data.get(2)+ " " + data.get(3));
         }
-       /* System.out.println("Class Prob");
+    }
+    
+    public void print(){
+//        for(ArrayList<String> data : Frequent){
+//            System.out.println(data.get(0)+ " "+data.get(1)+ " "+data.get(2)+ " " + data.get(3));
+//        }
+        System.out.println("Class Prob");
         for (ArrayList<String> data : ClassProb){
             System.out.println(data.get(0)+ " "+data.get(1));
-        }*/
+        }
     }
 }

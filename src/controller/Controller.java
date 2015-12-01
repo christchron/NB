@@ -27,8 +27,8 @@ public class Controller {
         
         // Untuk KNN
         
-        int k = 1;
-//        String fileName = "weather.nominal.arff";
+//        int k = 1;
+//        String fileName = "src/weather.nominal.arff";
 //        
 //        DataSet dataSet = new DataSet();
 //        dataSet.parseDataSet(fileName);
@@ -41,13 +41,15 @@ public class Controller {
 //        Result result = classifier.doFullTraining(k, dataSet);
 //        
 //        System.out.println("---- Full Training");
-//        System.out.println("Accuracy : " + result.getAccuracy());
-//        
+//        System.out.print("Accuracy : ");
+//        System.out.printf("%.2f ", result.getAccuracy());
+//        System.out.print("%");
+        
 //        result = classifier.doTenCrossFoldValidation(k, dataSet);   
 //        System.out.println("---- 10 Fold Cross Validation");
-//        System.out.println("Accuracy : " + result.getAccuracy());
+//        System.out.print("Accuracy : ");
+//        System.out.printf("%.2f", result.getAccuracy());
 //        
-        
         
         
         
@@ -56,9 +58,9 @@ public class Controller {
         
         DSParse dset;
         dataTest dTest;
-        dset = new DSParse("src/weather.nominal.arff");
-        dTest = new dataTest("src/weather.nominal.arff");
-        NBAlgo Freq;
+        dset = new DSParse("src/glass.arff");
+        dTest = new dataTest("src/glass.arff");
+        NBAlgo Freq = null;
         
         ArrayList<String> labels = dTest.getLabels();
         
@@ -67,8 +69,8 @@ public class Controller {
         System.out.println("---- Full Training");
         for (ArrayList<String> test : dTest.getDS()){
              Freq = new NBAlgo(dset,test);
-//             System.out.println(Freq.getResult());
-             
+             System.out.println(test);
+            
              String res = Freq.getResult();
              
              System.out.print("\tlabel - " + labels.get(i) + " - result - " + res);
@@ -82,6 +84,7 @@ public class Controller {
              
              i++;
         }
+        //Freq.print();
         
         double accuracy = (correctTest * 100) /(correctTest + wrongTest);
         System.out.println("Correctly Classified Instances : " + accuracy + " %");
